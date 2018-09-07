@@ -111,6 +111,14 @@ const ScrollableTabView = createReactClass({
     };
   },
 
+  componentDidMount() {
+    this.setTimeout(() => {
+      InteractionManager.runAfterInteractions(() => {
+        this.goToPage(this.props.initialPage, false);
+      });
+    }, 0);
+  },
+
   componentWillReceiveProps(props) {
     if (props.children !== this.props.children) {
       this.updateSceneKeys({ page: this.state.currentPage, children: props.children, });
